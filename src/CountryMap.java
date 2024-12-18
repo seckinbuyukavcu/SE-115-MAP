@@ -58,13 +58,17 @@ public class CountryMap {
 
     public void ayikla(){
     	Scanner sc = null;
+    	Scanner txtSc = new Scanner(System.in);
+    	System.out.println("enter txt name : ");
+    	String txtName = txtSc.nextLine();
         try{
-            sc = new Scanner(Paths.get("dosya.txt"));
+            sc = new Scanner(Paths.get(txtName+".txt"));
             this.cityNumber = Integer.parseInt(sc.nextLine()); 
             String[] aray = sc.nextLine().split(" ");
             
             this.cities = new City[cityNumber];
             for(int i = 0;i < cityNumber;i++){
+                this.cities[i] = new City();
                 this.cities[i].setCity(aray[i]);
             }
             this.routeNumber = Integer.parseInt(sc.nextLine());
@@ -79,6 +83,7 @@ public class CountryMap {
 			System.out.println("Dosya bulunamadi!");
 		} finally {
 			sc.close();
+			txtSc.close();
 		}
        
     }

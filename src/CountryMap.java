@@ -11,8 +11,8 @@ public class CountryMap {
     private int routeNumber;
     private String[] route;
 
-    public CountryMap() {
-        ayikla();
+    public CountryMap(String source) {
+        ayikla(source);
     }
 
     public City[] getCities() {
@@ -56,13 +56,15 @@ public class CountryMap {
     }
     
 
-    public void ayikla(){
+    public void ayikla(String source){
     	Scanner sc = null;
-    	Scanner txtSc = new Scanner(System.in);
-    	System.out.println("enter txt name : ");
-    	String txtName = txtSc.nextLine();
+    	
+    	
+    	
         try{
-            sc = new Scanner(Paths.get(txtName+".txt"));
+            sc = new Scanner(Paths.get(source));
+            
+            
             this.cityNumber = Integer.parseInt(sc.nextLine()); 
             String[] aray = sc.nextLine().split(" ");
             
@@ -71,7 +73,11 @@ public class CountryMap {
                 this.cities[i] = new City();
                 this.cities[i].setCity(aray[i]);
             }
+            
+            
             this.routeNumber = Integer.parseInt(sc.nextLine());
+            
+            
             this.citiesAndTimes = new String[routeNumber][3];
             for(int i = 0;i<routeNumber;i++){
                 this.citiesAndTimes[i] = sc.nextLine().split(" ");
@@ -80,13 +86,15 @@ public class CountryMap {
             this.route = sc.nextLine().split(" ");
            
         } catch (IOException e) {
-			System.out.println("Dosya bulunamadi!");
+			System.out.println("text is not founded");
 		} finally {
 			sc.close();
-			txtSc.close();
+			
 		}
        
     }
+
+
 
     
 
